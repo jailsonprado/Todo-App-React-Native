@@ -26,6 +26,7 @@ describe('Home page', () => {
     expect(result.current.tasks).toBeTruthy();
   });
 
+  //TESTs with Jest => aqui estou testando o click do button de adcionar tarefas, o testID adcionado no TouchableOpacity na page home esta sendo testado aqui
   it('verify click in button addd task', async () => {
     const {getByPlaceholderText, getByTestId} = render(<Home />, {
       wrapper: TaskProvider,
@@ -36,16 +37,16 @@ describe('Home page', () => {
     });
 
     const inputNewTask = getByPlaceholderText('Nova tarefa...');
-    const button = getByTestId('addButton');
+    const button = getByTestId('addButton'); // buscando o testID adc no Home
 
-    const data = {id: 'Task01', title: 'Task01'};
+    const data = {id: 'Task01', title: 'Task01'}; //Dados que vao ser inseridos no TextInput
 
-    act(() => fireEvent.changeText(inputNewTask, data.title));
+    act(() => fireEvent.changeText(inputNewTask, data.title)); // O firevent é usado para usar os eventos, nesse aqui eu adc o texto do input no campo title
 
     await act(async () => {
-      await fireEvent.press(button);
+      await fireEvent.press(button); // O firevent foi usado para pressionar o botao, seguindo um assicronismo para fazer o evento sem erros
     });
 
-    expect(result.current.tasks).toBeTruthy();
+    expect(result.current.tasks).toBeTruthy(); // Eu espero um resultado verdadeiro usando o toBeTruthy para fazer essa verificação
   });
 });
